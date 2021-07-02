@@ -1,0 +1,21 @@
+.container {
+   @include flex-center;
+}
+
+.container-header{
+   @include flex-center;
+   width: 100%;
+}
+
+.nav {
+   @include flex-center;
+   justify-content: space-around;
+   width: 100%;
+   &__shop{
+      font-size: 35px;
+   }
+}
+
+.fa-cart-arrow-down {
+   color : $header-text-color;
+}

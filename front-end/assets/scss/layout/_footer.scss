@@ -1,0 +1,21 @@
+.container {
+    @include flex-center;
+ }
+ 
+ .container-footer{
+    @include flex-center;
+    width: 100%;
+
+ }
+
+ p a {
+    @include flex-center;
+    color: $header-text-color;
+    padding-top: 10px;
+    padding-right: 20px;
+	padding-left: 20px;
+    &:hover{
+        text-decoration: none;
+    }
+
+}
