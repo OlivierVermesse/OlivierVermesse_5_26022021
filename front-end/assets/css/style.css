@@ -102,12 +102,21 @@ a:hover {
   display: flex;
   justify-content: center;
   align-self: center;
-  margin: 0 5%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  grid-gap: 30px;
+  gap: 20px;
   max-width: 1700px;
+}
+@media all and (max-width: 767px) {
+  .products-home-page .products {
+    grid-template-columns: 1fr;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  .products-home-page .products {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 .products-home-page .products .product {
   position: relative;
@@ -149,6 +158,16 @@ a:hover {
   font-size: 25px;
   border-radius: 0 0 20px 20px;
   color: white;
+}
+@media all and (max-width: 767px) {
+  .products-home-page .products .product__infos {
+    font-size: 20px;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  .products-home-page .products .product__infos {
+    font-size: 20px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
