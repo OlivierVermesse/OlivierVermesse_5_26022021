@@ -1,10 +1,10 @@
 .teddy {
-    max-width: 700px;
     &__bg {
       background-image: url("../img/bg_teddy2.png");
       background-size: cover;
       background-position:center ;
       height: auto;
+      // width: auto;
       @include flex-center;
       &__text-group {
         margin: 20px 20px;
