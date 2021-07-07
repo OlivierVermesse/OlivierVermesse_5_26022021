@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "sass": "sass --watch assets/scss/main.scss:assets/css/style.css"
-
   },
   "author": "overmesse",
   "license": "ISC",

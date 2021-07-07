@@ -25,7 +25,7 @@ function getArticles() {
         //création du lien pour page produit
         let productLink = document.createElement("a"); //création de l'attribut A
         productBloc.appendChild(productLink); //ajout de l'atribut dans la DIV précédente en tant qu'enfant
-        productLink.href = `product.html?id=${listAPI[article]._id}`; //récupération de l'ID produit et ajout propriété HREF pour le lien produit
+        productLink.href = `Template/product.html?id=${listAPI[article]._id}`; //récupération de l'ID produit et ajout propriété HREF pour le lien produit
         productLink.classList.add("new-link"); //indication que la CLASS est new-link
 
         //création d'une DIV pour la photo du produit
