@@ -17,10 +17,12 @@
         height: 100%;
         &__title {
           font-size: 32px;
+          text-align: center;
         }
         &__description {
           font-size: 18px;
           margin: 10px 0;
+          text-align: justify;
         }
         &__price {
           font-size: 22px;

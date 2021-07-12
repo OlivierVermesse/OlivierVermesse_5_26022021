@@ -192,10 +192,12 @@ a:hover {
 }
 .productPage .productBloc__infos__title {
   font-size: 32px;
+  text-align: center;
 }
 .productPage .productBloc__infos__description {
   font-size: 18px;
   margin: 10px 0;
+  text-align: justify;
 }
 .productPage .productBloc__infos__price {
   font-size: 22px;
@@ -267,20 +269,27 @@ a:hover {
   width: 50px;
 }
 
+section {
+  width: 100%;
+}
+
 .shopPage {
   display: flex;
   justify-content: center;
   align-self: center;
-  width: 100%;
 }
 .shopPage .shopCart {
   overflow: hidden;
   margin: 50px 15px;
-  display: none;
-  width: 600px;
   background: #dee9f7;
   border-radius: 20px 20px 20px 20px;
   box-shadow: 0px 0px 10px 0px rgba(63, 63, 63, 0.49);
+  width: auto;
+}
+@media all and (max-width: 767px) {
+  .shopPage .shopCart {
+    margin: 20px 10px 20px 10px;
+  }
 }
 .shopPage .shopCart h2 {
   text-align: center;
@@ -289,7 +298,10 @@ a:hover {
   margin-left: 10px;
 }
 .shopPage .shopCart__recap {
-  margin: 10px 0 10px 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
   width: 90%;
   background: #dee9f7;
 }
@@ -310,12 +322,22 @@ a:hover {
 }
 
 .first-line {
-  display: flex;
-  justify-content: center;
-  align-self: center;
   font-size: 19px;
   font-weight: bold;
   text-decoration: underline;
+}
+
+@media all and (max-width: 767px) {
+  .data-title {
+    font-size: 90%;
+    min-width: 100px;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .data-quantity, .data-price {
+    font-size: 90%;
+  }
 }
 
 .livraison {
@@ -323,7 +345,6 @@ a:hover {
 }
 
 .form {
-  flex: 1;
   margin: 0 20px 10px 20px;
 }
 .form__group {
@@ -334,11 +355,8 @@ a:hover {
   display: block;
   width: 125px;
   font-weight: bold;
-  font-size: 1em;
 }
 .form__group .input-control {
-  flex: 1 1 auto;
-  display: block;
   margin-bottom: 10px;
   margin-right: 8px;
   padding: 4px;
