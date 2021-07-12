@@ -18,8 +18,10 @@
             <div class = "container-header">
                 <div class="nav">
                     <a href="../index.html"><h1 class="nav__cie text-light">Orinoco</h1></a>
-                    <a href="shop.html"><div class="nav__shop">
+                    <a href="shop.html">
+                        <div class="nav__shop">
                         <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                        </div>
                     </a>
                 </div>
             </div>
@@ -36,7 +38,7 @@
                         <div class="shopCart__recap__title data-quantity first-line">Quantité</div>
                         <div class="shopCart__recap__title data-price first-line">Prix </div>
                     </div>
-                                  
+
                     <div class="empty-cart">
                         <a href="shop.html">
                             <div class="to-empty-cart">
@@ -44,105 +46,55 @@
                             </div>
                         </a>
                     </div>
-                    <h2 class="total"></h2>            
+                    <h2 class="total">Total</h2>            
                 </div>
-    
-                <!-- <a class="shopCart__form">
-                    <h2 class="livraison">Votre adresse de livraison</h2> -->
-                    <!-- <form class="form">
-                        <div class="name-lastname">
-                            <div class="shopCart__form-line" id="bloc__lastname">
-                                <label for="lastname">Nom :</label>
-                                <input type="text" placeholder="Nom" id="lastname" class="form-control input-control" name="user_lastname" required>
+                <br>
+                <div class="form">
+                    <h2 class="livraison">Votre adresse de livraison</h2>
+                    <form method="post" name="form-panier">
+                        <fieldset>
+                            <div class="form__group">
+                                <div class="form__group">
+                                    <label for="lastname">Nom : </label>
+                                    <input type="text" id="lastname" class="form-control input-control" required>
+                                </div>
+                                <div class="form__group">
+                                    <label for="name">Prénom :</label>
+                                    <input type="text" id="name" class="form-control input-control" required>
+                                </div>
                             </div>
-                            <div class="shopCart__form-line" id="bloc__name">
-                                <label for="name">Prénom :</label>
-                                <input type="text" placeholder="Prénom" id="name" class="form-control input-control" name="user_name" required> 
+                            <div class="form__group">
+                                <label for="adress">Adresse :</label>
+                                <input type="text" id="adress" class="form-control input-control" required>
                             </div>
-                        </div>
-                        <div class="shopCart__form-line" id="bloc__adress">
-                            <label for="adress">Adresse :</label>
-                            <input type="text" placeholder="Adresse de livraison" id="adress" class="form-control input-control" name="user_adress" required>
-                        </div>        
-                        <div class="zip-code">
-                            <div class="shopCart__form-line" id="bloc__postal">
+                            <div class="form__group">
                                 <label for="postal">Code postal :</label>
-                                <input type="text" placeholder="Code postal" id="postal" class="form-control input-control" name="user_postal" required>
+                                <input type="text" id="postal" class="form-control input-control" required>
                             </div>
-                            <div class="shopCart__form-line" id="bloc__city">
+                            <div class="form__group">
                                 <label for="city">Ville :</label>
-                                <input type="text" placeholder="Ville" id="city" class="form-control input-control" name="user_city" required>
+                                <input type="text" id="city" class="form-control input-control" required>
                             </div>
-                        </div>
-                        <div class="shopCart__form-line" id="bloc__mail">
-                            <label for="mail">Email :</label>
-                            <input type="email" placeholder="Adresse mail" id="mail" class="form-control input-control" name="user_mail" required>
-                        </div>
-                        <div class="shopCart__form-line" id="bloc__phone">
-                            <label for="phone" >Téléphone :</label>
-                            <input type="tel" placeholder="Numéro de téléphone" id="phone" class="form-control input-control" name="phone" required >
-                        </div>
-                        <div class="error"></div>
-                        <br>
-                        <div class="shopCart__form__button">
+                            <div class="form__group">
+                                <label for="mail">E-mail :</label>
+                                <input type="email" id="mail" class="form-control input-control" required>
+                            </div>
+                            <div class="form__group">
+                                <label for="phone">Téléphone :</label>
+                                <input type="tel" id="phone" class="form-control input-control" required>
+                            </div>
+                            <div class="error"></div>
+                            <br>
+                            </fieldset> 
                             <div id="submit" class="cart-card__form__button to-pay" >Commander et payer</div>
-                    </div>
-                    </form> -->
-                    <br>
-
-                    <div class="form">
-                        <h2 class="livraison">Votre adresse de livraison</h2>
-                        <form method="post" name="form-panier">
-                            <fieldset>
-                                <div class="form__group">
-                                    <div class="form__group">
-                                        <label for="lastname">Nom : </label>
-                                        <input type="text" id="lastname" class="form-control input-control" required>
-                                    </div>
-                                    <div class="form__group">
-                                        <label for="name" class="right-inline">Prénom :</label>
-                                        <input type="text" id="name" class="form-control input-control" required>
-                                    </div>
-                                </div>
-                                <div class="form__group">
-                                    <label for="adress">Adresse :</label>
-                                    <input type="text" id="adress" class="form-control input-control" required>
-                                </div>
-                                <div class="form__group">
-                                    <label for="postal">Code postal :</label>
-                                    <input type="text" id="postal" class="form-control input-control" required>
-                                </div>
-                                <div class="form__group">
-                                    <label for="city">Ville :</label>
-                                    <input type="text" id="city" class="form-control input-control" required>
-                                </div>
-                                <div class="form__group">
-                                    <label for="mail">E-mail :</label>
-                                    <input type="email" id="mail" class="form-control input-control" required>
-                                </div>
-                                <div class="form__group">
-                                    <label for="phone">Téléphone :</label>
-                                    <input type="tel" id="phone" class="form-control input-control" required>
-                                </div>
-                                <div class="error"></div>
-                                <br>
-                                </fieldset> 
-                                    <div id="submit" class="cart-card__form__button to-pay" >Commander et payer</div>
-                        </form>
-                    </div>
-                    <br>
-
-
-                    <div class =" shop-again">
-                        <a href="../index.html" > Continuer mes achats </a>
-                    </div>
-
-
-                    <div class="added-to-cart-confirmation">
-                        <p class="confirmation-text"></p>
-                    </div>
-                    
-                    
+                    </form>
+                </div>
+                <br>
+                <div class =" shop-again">
+                    <a href="../index.html" > Continuer mes achats </a>
+                </div>
+                <div class="added-to-cart-confirmation">
+                    <p class="confirmation-text"></p>
                 </div>
             </div>
             <div class="if-empty-cart">
