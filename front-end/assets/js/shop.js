@@ -160,13 +160,16 @@ function formInformations() {
         .then((data) => {
           localStorage.setItem("orderId", data.orderId); //on récupére l'ID de confirmation de commande de l'API
           localStorage.setItem("total", confirmationPrice[1]); //on récupére le montant total de la commande pour l'afficher dans la confirmation de commande
-          localStorage.clear();
           console.log("orderId de l'API : " + data.orderId);
           console.log("prix en retour de l'API : " + confirmationPrice[1]);
+
+          //ouverture de la page confirmation avec récupération des 2 dernières données stockées dans le LS
+          document.location.href = "../template/confirmation.html";
       });
     }
   });
 }
+
 
 main();
 

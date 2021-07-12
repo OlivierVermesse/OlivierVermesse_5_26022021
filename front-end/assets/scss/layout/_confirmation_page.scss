@@ -1,0 +1,27 @@
+.recap {
+  @include flex-center;
+  width: 100%;
+  .confirm {
+    padding: 20px;
+    margin: 50px 15px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px 20px 20px 20px;
+    box-shadow: 0px 0px 10px 0px rgba(63, 63, 63, 0.49);
+    h2 {
+      text-align: justify;
+    }
+  }
+  p {
+    font-size: 19px;
+    text-align: center;
+    span {
+      font-weight: bold;
+    }
+    a {
+      color: black;
+      text-decoration: underline;
+    }
+  }
+
+}
