@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orinoco - Créateur d'ours en peluche'</title>
+    <meta name="description" content="Votre panier Orinoco">
+	<link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/17f21b793c.js"></script>
+	<script src="https://kit.fontawesome.com/717dc6ad61.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <header>
+        <div class = "bg-info">
+            <div class = "container-header">
+                <div class="nav">
+                    <a href="../index.html"><h1 class="nav__cie text-light">Orinoco</h1></a>
+                    <a href="shop.html"><div class="nav__shop">
+                        <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="shopPage"> 
+        <section>
+            <div class="shopCart">
+                <h2 class="shop">Votre panier</h2>
+                <div class="shopCart__recap">
+                    <div class="shopCart__recap__row ">
+                        <div class="shopCart__recap__title data-title first-line">Nom</div>
+                        <div class="shopCart__recap__title data-quantity first-line">Quantité</div>
+                        <div class="shopCart__recap__title data-price first-line">Prix </div>
+                    </div>
+                                  
+                    <div class="empty-cart">
+                        <a href="shop.html">
+                            <div class="to-empty-cart">
+                                Vider le panier
+                            </div>
+                        </a>
+                    </div>
+                    <h2 class="total"></h2>            
+                </div>
+    
+                <!-- <a class="shopCart__form">
+                    <h2 class="livraison">Votre adresse de livraison</h2> -->
+                    <!-- <form class="form">
+                        <div class="name-lastname">
+                            <div class="shopCart__form-line" id="bloc__lastname">
+                                <label for="lastname">Nom :</label>
+                                <input type="text" placeholder="Nom" id="lastname" class="form-control input-control" name="user_lastname" required>
+                            </div>
+                            <div class="shopCart__form-line" id="bloc__name">
+                                <label for="name">Prénom :</label>
+                                <input type="text" placeholder="Prénom" id="name" class="form-control input-control" name="user_name" required> 
+                            </div>
+                        </div>
+                        <div class="shopCart__form-line" id="bloc__adress">
+                            <label for="adress">Adresse :</label>
+                            <input type="text" placeholder="Adresse de livraison" id="adress" class="form-control input-control" name="user_adress" required>
+                        </div>        
+                        <div class="zip-code">
+                            <div class="shopCart__form-line" id="bloc__postal">
+                                <label for="postal">Code postal :</label>
+                                <input type="text" placeholder="Code postal" id="postal" class="form-control input-control" name="user_postal" required>
+                            </div>
+                            <div class="shopCart__form-line" id="bloc__city">
+                                <label for="city">Ville :</label>
+                                <input type="text" placeholder="Ville" id="city" class="form-control input-control" name="user_city" required>
+                            </div>
+                        </div>
+                        <div class="shopCart__form-line" id="bloc__mail">
+                            <label for="mail">Email :</label>
+                            <input type="email" placeholder="Adresse mail" id="mail" class="form-control input-control" name="user_mail" required>
+                        </div>
+                        <div class="shopCart__form-line" id="bloc__phone">
+                            <label for="phone" >Téléphone :</label>
+                            <input type="tel" placeholder="Numéro de téléphone" id="phone" class="form-control input-control" name="phone" required >
+                        </div>
+                        <div class="error"></div>
+                        <br>
+                        <div class="shopCart__form__button">
+                            <div id="submit" class="cart-card__form__button to-pay" >Commander et payer</div>
+                    </div>
+                    </form> -->
+                    <br>
+
+                    <div class="form">
+                        <h2 class="livraison">Votre adresse de livraison</h2>
+                        <form method="post" name="form-panier">
+                            <fieldset>
+                                <div class="form__group">
+                                    <div class="form__group">
+                                        <label for="lastname">Nom : </label>
+                                        <input type="text" id="lastname" class="form-control input-control" required>
+                                    </div>
+                                    <div class="form__group">
+                                        <label for="name" class="right-inline">Prénom :</label>
+                                        <input type="text" id="name" class="form-control input-control" required>
+                                    </div>
+                                </div>
+                                <div class="form__group">
+                                    <label for="adress">Adresse :</label>
+                                    <input type="text" id="adress" class="form-control input-control" required>
+                                </div>
+                                <div class="form__group">
+                                    <label for="postal">Code postal :</label>
+                                    <input type="text" id="postal" class="form-control input-control" required>
+                                </div>
+                                <div class="form__group">
+                                    <label for="city">Ville :</label>
+                                    <input type="text" id="city" class="form-control input-control" required>
+                                </div>
+                                <div class="form__group">
+                                    <label for="mail">E-mail :</label>
+                                    <input type="email" id="mail" class="form-control input-control" required>
+                                </div>
+                                <div class="form__group">
+                                    <label for="phone">Téléphone :</label>
+                                    <input type="tel" id="phone" class="form-control input-control" required>
+                                </div>
+                                <div class="error"></div>
+                                <br>
+                                </fieldset> 
+                                    <div id="submit" class="cart-card__form__button to-pay" >Commander et payer</div>
+                        </form>
+                    </div>
+                    <br>
+
+
+                    <div class =" shop-again">
+                        <a href="../index.html" > Continuer mes achats </a>
+                    </div>
+
+
+                    <div class="added-to-cart-confirmation">
+                        <p class="confirmation-text"></p>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            <div class="if-empty-cart">
+                <h2>Votre panier est vide. <a href="../index.html">Remplissez le d'abord !</a></h2>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class = "bg-info">
+            <div class="container-fluid">
+                <div class = "container-footer">
+                       <p><a href="x">Contact</a></p>
+                       <p><a href="x">CGU</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../assets/js/shop.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>

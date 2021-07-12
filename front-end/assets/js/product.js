@@ -2,6 +2,19 @@
 let params = new URL(document.location).searchParams;
 let id = params.get("id"); //récupération uniquement de l'ID
 
+function checkIf404() {
+  window.addEventListener("error", (e) => {
+      let container = document.querySelector(".productPage");
+      container.innerHTML = `<p style="color: black"> Cette page n'existe pas. <a style="color: black" class="back-to-home" href="../index.html" >Retourner dans la boutique ?</a></p>`;
+      container.style.padding = "500px 0";
+      container.style.fontSize = "26px";
+      let backToHomeLink = document.querySelector(".back-to-home");
+      backToHomeLink.style.textDecoration = "underline";
+    },
+    false
+  );
+}
+
 //récupération des class de l'HTML pour les mettre dans une variable
 const productBlocImg = document.querySelector(".img");
 const productBlocName = document.querySelector(".productBloc__infos__title");
@@ -9,7 +22,6 @@ const productBlocDescription = document.querySelector(".productBloc__infos__desc
 const productBlocPrice = document.querySelector(".productBloc__infos__price");
 const bearQt = document.querySelector("#bearQt");
 const colorChoice = document.querySelector("#colorChoice");
-
 
 //fonction d'affichage des données de l'article sélectionné
 function getArticles() {
@@ -93,6 +105,7 @@ function getArticles() {
 main();
 
 function main() {
+  checkIf404();
   getArticles();
   addToCart();
 
