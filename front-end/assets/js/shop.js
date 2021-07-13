@@ -14,7 +14,10 @@ function displayCart() {
     cartCard.style.flexDirection = "column";
     cartCard.style.justifyContent = "space-around";
     emptyCart.style.display = "none";
+  }  else {
+    cartCard.style.display = "none"
   }
+
   // Pour chaque objet dans le tableau copié du localStorage, on crée les divs de l'affichage du panier et on les remplit avec les données du tableau.
   for (let produit in localStorage2) {
     let productRow = document.createElement("div");
@@ -26,10 +29,12 @@ function displayCart() {
     productRow.appendChild(productName);
     productName.classList.add("shopCart__recap__title", "data-title");
     productName.innerHTML = localStorage2[produit].name;
+
     let productQuantity = document.createElement("div");
     productRow.appendChild(productQuantity);
     productQuantity.classList.add("shopCart__recap__title", "data-quantity");
     productQuantity.innerHTML = localStorage2[produit].quantity;
+
     let productPrice = document.createElement("div");
     productRow.appendChild(productPrice);
     productPrice.classList.add("shopCart__recap__title", "data-price");
@@ -45,7 +50,6 @@ function displayCart() {
     productRow.appendChild(productPrice2);
     productPrice2.classList.add("price2"); //cette CLASS sert pour le TOTAL GENERAL et paramétré en DISPLAY : NONE
     productPrice2.innerHTML = localStorage2[produit].price * localStorage2[produit].quantity;
-
   }
 }
 //affichage du montant TOTAL
@@ -121,9 +125,15 @@ function formInformations() {
     } else if (isNaN(inputPhone.value)) {
       e.preventDefault();
       error.innerText = "Votre numéro de téléphone n'est pas valide";
+      error.style.color = "white";
+      error.style.background = "red";
+      error.style.padding = "2px 5px 2px 5px";
     } else if (isNaN(inputPostal.value)) {
       e.preventDefault();
       error.innerText = "Votre code postal n'est pas valide";
+      error.style.color = "white";
+      error.style.background = "red";
+      error.style.padding = "2px 5px 2px 5px";
     } else {
 
       // Creation d'une tableau shopId qui contient les infos du client et le panier
@@ -166,7 +176,10 @@ function formInformations() {
 
           //ouverture de la page confirmation avec récupération des 2 dernières données stockées dans le LS
           document.location.href = "../template/confirmation.html";
-      });
+        })
+        .catch((err) => {
+          alert("Il y a eu une erreur : " + err);
+        });
     }
   });
 }
