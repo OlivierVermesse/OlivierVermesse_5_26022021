@@ -340,6 +340,10 @@ section {
   }
 }
 
+.price2 {
+  display: none;
+}
+
 .livraison {
   padding-top: 30px;
 }

@@ -15,43 +15,46 @@ function displayCart() {
     cartCard.style.justifyContent = "space-around";
     emptyCart.style.display = "none";
   }
-
   // Pour chaque objet dans le tableau copié du localStorage, on crée les divs de l'affichage du panier et on les remplit avec les données du tableau.
   for (let produit in localStorage2) {
     let productRow = document.createElement("div");
     cart.insertBefore(productRow, test); //création de la DIV avant la class  "empty-cart" (variable TEST)
-    productRow.classList.add("shopCart__recap__row", "product-row"); 
+    productRow.classList.add("shopCart__recap__row", "product-row");
 
     //création des DIV en prévision de la récup des données du LS
     let productName = document.createElement("div");
     productRow.appendChild(productName);
     productName.classList.add("shopCart__recap__title", "data-title");
     productName.innerHTML = localStorage2[produit].name;
-
     let productQuantity = document.createElement("div");
     productRow.appendChild(productQuantity);
     productQuantity.classList.add("shopCart__recap__title", "data-quantity");
     productQuantity.innerHTML = localStorage2[produit].quantity;
-
     let productPrice = document.createElement("div");
     productRow.appendChild(productPrice);
-    productPrice.classList.add("shopCart__recap__title", "data-price", "price");//la dernière CLASS PRICE va permettre de faire le TOTAL
+    productPrice.classList.add("shopCart__recap__title", "data-price");
 
     // Affichage du prix avec le formatage € pour les lignes unitaires
     productPrice.innerHTML = new Intl.NumberFormat("fr-FR", {
       style: "currency",
       currency: "EUR",
     }).format(localStorage2[produit].price * localStorage2[produit].quantity);
+
+    //création d'une 2ème variable productPrice pour résolution du pb quand addition de montant avec séparateur de milliers
+    let productPrice2 = document.createElement("div");
+    productRow.appendChild(productPrice2);
+    productPrice2.classList.add("price2"); //cette CLASS sert pour le TOTAL GENERAL et paramétré en DISPLAY : NONE
+    productPrice2.innerHTML = localStorage2[produit].price * localStorage2[produit].quantity;
+
   }
 }
-
 //affichage du montant TOTAL
 function countTotalInCart() {
   let arrayPrice = []; //création d'une colonne tableau avec les prix unitaire 
   let totalPrice = document.querySelector(".total"); //récupération de la CLASS TOTAL du HTML
 
   // On récupére chaque prix pour les mettre dans le tableau
-  let allPrice = document.querySelectorAll(".price"); //la CLASS PRICE permet de les récupérer
+  let allPrice = document.querySelectorAll(".price2"); //la CLASS PRICE permet de les récupérer
   for (let price in allPrice) {
     arrayPrice.push(allPrice[price].innerHTML); //intégration dans le tableau
   }
@@ -85,6 +88,7 @@ function toEmptyShop() {
     localStorage.clear();
   });
 }
+
 //gestion de l'envoi au back
 //récupération des données saisies dans le formulaire
 function formInformations() {
@@ -127,7 +131,6 @@ function formInformations() {
       JSON.parse(localStorage.getItem("products")).forEach((produit) =>{ 
         shopId.push(produit._id);
       });
-
       const clientShop = {
         contact: {
           firstName: inputName.value,
@@ -148,18 +151,17 @@ function formInformations() {
         headers: { "Content-Type": "application/json" },
       };
       console.log(options);
-
       //Préparation du prix formaté pour l'afficher sur la prochaine page
       let confirmationPrice = document.querySelector(".total").innerText; //récupération du Total de la CLASS dans la variable
       confirmationPrice = confirmationPrice.split(" :"); //séparation en 2 colonnes pour avoir uniquement le total
       console.log("prix pour confirmations : " + confirmationPrice)
-
       //Envoie de la requête avec l'en-tête. On changera de page avec un localStorage qui ne contiendra plus que l'order id et le prix.
       fetch("http://localhost:3000/api/teddies/order", options)
         .then(res => res.json())
         .then((data) => {
           localStorage.setItem("orderId", data.orderId); //on récupére l'ID de confirmation de commande de l'API
           localStorage.setItem("total", confirmationPrice[1]); //on récupére le montant total de la commande pour l'afficher dans la confirmation de commande
+          localStorage.clear();
           console.log("orderId de l'API : " + data.orderId);
           console.log("prix en retour de l'API : " + confirmationPrice[1]);
 
