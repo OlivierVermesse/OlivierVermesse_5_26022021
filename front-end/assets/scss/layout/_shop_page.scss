@@ -79,10 +79,13 @@ section {
       width: 125px;
       font-weight: bold;
     }
+
     & .input-control {
       margin-bottom: 10px;
       margin-right: 8px;
       padding: 4px;
+      width: 80%;
+      border-color: white;
     }
   }
 }

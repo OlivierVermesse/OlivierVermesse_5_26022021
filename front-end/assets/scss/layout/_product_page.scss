@@ -40,6 +40,9 @@
           @include tablet{
             flex-direction: column;
           }
+          a {
+            padding: 15px;
+          }
         }
         &__quantity {
           margin-bottom: 20px;

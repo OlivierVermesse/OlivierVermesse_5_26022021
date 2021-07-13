@@ -4,7 +4,8 @@
   "description": "p5",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --watch assets/scss/main.scss:assets/css/style.css"
+    "sass": "sass --watch assets/scss/main.scss:assets/css/style.css",
+    "prefix": "postcss ./assets/css/style.css --use autoprefixer -d ./assets/css/"
   },
   "author": "overmesse",
   "license": "ISC",

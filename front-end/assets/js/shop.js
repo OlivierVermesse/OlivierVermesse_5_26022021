@@ -71,9 +71,9 @@ function countTotalInCart() {
   // Conversion en nombre des prix en créant un nouveau tableau pour convertir la même donnée dans la même variable
   arrayPrice = arrayPrice.map((x) => parseFloat(x));
 
-  // Addition des prix du tableau
-  const reducer = (acc, currentVal) => acc + currentVal;
-  arrayPrice = arrayPrice.reduce(reducer);
+  // Addition des prix du tableau ==> permet de ne pas avoir de message d'erreur si LS vide grace a ala valeur initiale à 0
+  const reducer = arrayPrice.reduce((acc, value) => acc + value, 0);
+  arrayPrice = reducer
 
   // Affichage du prix avec formatage € dans le HTML
   totalPrice.innerText = `Total : ${(arrayPrice = new Intl.NumberFormat(
@@ -122,7 +122,8 @@ function formInformations() {
       error.style.background = "red";
       error.style.padding = "2px 5px 2px 5px";
       e.preventDefault();
-    } else if (isNaN(inputPhone.value)) {
+    } else if (
+      isNaN(inputPhone.value)) {
       e.preventDefault();
       error.innerText = "Votre numéro de téléphone n'est pas valide";
       error.style.color = "white";
