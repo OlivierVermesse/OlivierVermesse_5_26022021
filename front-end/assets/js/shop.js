@@ -175,7 +175,7 @@ function formInformations() {
           console.log("prix en retour de l'API : " + confirmationPrice[1]);
 
           //ouverture de la page confirmation avec récupération des 2 dernières données stockées dans le LS
-          document.location.href = "../template/confirmation.html";
+          document.location.href = "../Template/confirmation.html";
         })
         .catch((err) => {
           alert("Il y a eu une erreur : " + err);
