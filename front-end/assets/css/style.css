@@ -344,7 +344,7 @@ section {
   }
 }
 
-.price2 {
+.priceForTotal {
   display: none;
 }
 
@@ -374,13 +374,14 @@ section {
 
 .to-pay {
   font-size: 18px;
-  text-align: center;
-  align-self: center;
   padding: 20px;
   background: #17a2b8;
   border-radius: 5px;
   border: solid 1px #17a2b8;
   color: black;
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
 }
 .to-pay:hover {
   cursor: pointer;
@@ -392,7 +393,7 @@ section {
   font-size: 18px;
   text-align: center;
   align-self: center;
-  padding: 20px;
+  padding: 10px;
   background: #17a2b8;
   border-radius: 5px;
   border: solid 1px #17a2b8;

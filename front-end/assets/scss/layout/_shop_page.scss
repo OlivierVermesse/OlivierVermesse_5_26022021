@@ -63,7 +63,7 @@ section {
   }
 }
 
-.price2 {
+.priceForTotal {
   display: none;
 }
 
@@ -88,18 +88,20 @@ section {
       width: 80%;
       border-color: white;
     }
+    
   }
 }
 
 .to-pay {
   font-size: 18px;
-  text-align: center;
-  align-self: center;
   padding: 20px;
   background: $bg;
   border-radius: 5px;
   border: solid 1px $bg;
   color: black;
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
   &:hover {
     cursor: pointer;
     opacity: 0.8;
@@ -111,7 +113,7 @@ section {
   font-size: 18px;
   text-align: center;
   align-self: center;
-  padding: 20px;
+  padding: 10px;
   background: $bg;
   border-radius: 5px;
   border: solid 1px $bg;
