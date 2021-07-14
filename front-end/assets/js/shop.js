@@ -146,49 +146,137 @@ btnEnvoyerForm.addEventListener("click", (e)=> {
   console.log("formValues")
   console.log(formValues);
 
-  //Creation d'une tableau shopId qui contient les infos du client et le panier
-  let shopId = [];
-  JSON.parse(localStorage.getItem("products")).forEach((produit) =>{ 
-    shopId.push(produit._id);
-  });
-  const clientShop = {
-    contact: {
-      firstName: formValues.name,
-      lastName: formValues.lastname,
-      address: formValues.adress,
-      city: formValues.city,
-      email: formValues.mail,
-    },
-    products: shopId,
-  };
-  console.log("clientShop");
-  console.log(clientShop);
+  //regles de gestion de validation des formulaires
+  function verification() {
+    const nom = formValues.lastname;
+    const prenom = formValues.name;
+    const adress = formValues.adress;
+    const postal = formValues.postal;
+    const city = formValues.city;
+    const mail = formValues.mail;
+    const phone = formValues.phone;
+  
+    const Ermail = /^[a-z0-9._-]+@[a-z0-9.-]{2,}[.][a-z]{2,3}$/
+    const Erphone = /[0-9]{8}/;// 8 chiffres
+    const erreurs = [];
+  
+    if (!nom) erreurs.push("Le nom n'est pas renseigné.");
+    if (!prenom) erreurs.push("Le prénom n'est pas renseigné.");
+    if (!adress) erreurs.push("L'adresse n'est pas renseignée.");
+    if (!postal) erreurs.push("Le code postal n'est pas renseigné.");
+    if (!city) erreurs.push("La ville n'est pas renseignée.");
+    if (!mail) erreurs.push("L'email n'est pas renseigné.");
+    if (!phone) erreurs.push("Le numéro de téléphone n'est pas renseigné.");
+    if (Ermail.test(mail)) erreurs.push("Le format de l'email n'est pas valide.");
+    if (Erphone.test(phone)) erreurs.push("Le numéro de téléphone n'est pas valide (8 chiffres).");
 
-      // -------  Envoi de la requête POST au back-end --------
-      // Création de l'entête de la requête avec les données client + panier
-  const options = {
-    method: "POST",
-    body: JSON.stringify(clientShop),
-    headers: { "Content-Type": "application/json" },
-  };
-  console.log("options");
-  console.log(options);
-      //Préparation du prix formaté pour l'afficher sur la prochaine page
-  let confirmationPrice = document.querySelector(".total").innerText; //récupération du Total de la CLASS dans la variable
-  confirmationPrice = confirmationPrice.split(" :"); //séparation en 2 colonnes pour avoir uniquement le total
-  console.log("prix pour confirmations : " + confirmationPrice)
-      //Envoie de la requête avec l'en-tête. On changera de page avec un localStorage qui ne contiendra plus que l'order id et le prix.
-  fetch("http://localhost:3000/api/teddies/order", options)
-    .then(res => res.json())
-    .then((data) => {
-      localStorage.setItem("orderId", data.orderId); //on récupére l'ID de confirmation de commande de l'API
-      localStorage.setItem("total", confirmationPrice[1]); //on récupére le montant total de la commande pour l'afficher dans la confirmation de commande
-      console.log("orderId de l'API : " + data.orderId);
-      console.log("prix en retour de l'API : " + confirmationPrice[1]);
+    if (erreurs.length > 0) {
+       alert("Le formulaire n'a pas pu être validé car :\n\n" + erreurs.join("\n"));
+    }
+    return (erreurs.length == 0);
+ }
 
-      //ouverture de la page confirmation avec récupération des 2 dernières données stockées dans le LS
-      document.location.href = "../Template/confirmation.html";
-    })
-//         .catch((err) => {
-//           alert("Il y a eu une erreur : " + err);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const textAlert = (value) => {
+//   return value + " : Saisir uniquement des lettres"
+// }
+
+// const regExAlphaNum = (value) => { //voir la synthaxe via le schema 
+//   return(/^[A-Za-z]$/.test(value))
+// }
+
+
+
+// function lastnameCheck() {
+//   /////CONTROLE DES SAISIES
+//   const leLastname = formValues.lastname;
+//   if(regExAlphaNum(leLastname)) { // va renvoyer VRAI ou FAUX
+// return true;
+//   } else {
+// alert(textAlert("Nom"));
+// return false;
+//   };
+// }
+
+// function nameCheck() {
+//   /////CONTROLE DES SAISIES
+//   const leName = formValues.name;
+//   if(regExAlphaNum(leName)) { // va renvoyer VRAI ou FAUX
+// return true;
+//   } else {
+// alert(textAlert("Prénom"));
+// return false;
+//   };
+// }
+
+
+
+// //si formulaire 100% OK alors on passe la fonction d'envoi
+  if(verification()) {
+    sentIfOk();
+  } else {
+    alert("Veuillez vérifier la saisie de votre formulaire");
+  }
+
+  //création de la fonction pour gérer la validation du formulaire
+  function sentIfOk() {
+    //Creation d'une tableau shopId qui contient les infos du client et le panier
+    let shopId = [];
+    JSON.parse(localStorage.getItem("products")).forEach((produit) =>{ 
+      shopId.push(produit._id);
+    });
+    const clientShop = {
+      contact: {
+        firstName: formValues.name,
+        lastName: formValues.lastname,
+        address: formValues.adress,
+        city: formValues.city,
+        email: formValues.mail,
+      },
+      products: shopId,
+    };
+    console.log("clientShop");
+    console.log(clientShop);
+
+        // -------  Envoi de la requête POST au back-end --------
+        // Création de l'entête de la requête avec les données client + panier
+    const options = {
+      method: "POST",
+      body: JSON.stringify(clientShop),
+      headers: { "Content-Type": "application/json" },
+    };
+    console.log("options");
+    console.log(options);
+        //Préparation du prix formaté pour l'afficher sur la prochaine page
+    let confirmationPrice = document.querySelector(".total").innerText; //récupération du Total de la CLASS dans la variable
+    confirmationPrice = confirmationPrice.split(" :"); //séparation en 2 colonnes pour avoir uniquement le total
+    console.log("prix pour confirmations : " + confirmationPrice)
+        //Envoie de la requête avec l'en-tête. On changera de page avec un localStorage qui ne contiendra plus que l'order id et le prix.
+    fetch("http://localhost:3000/api/teddies/order", options)
+      .then(res => res.json())
+      .then((data) => {
+        localStorage.setItem("orderId", data.orderId); //on récupére l'ID de confirmation de commande de l'API
+        localStorage.setItem("total", confirmationPrice[1]); //on récupére le montant total de la commande pour l'afficher dans la confirmation de commande
+        console.log("orderId de l'API : " + data.orderId);
+        console.log("prix en retour de l'API : " + confirmationPrice[1]);
+
+        //ouverture de la page confirmation avec récupération des 2 dernières données stockées dans le LS
+        // document.location.href = "../Template/confirmation.html";
+      })
+  //         .catch((err) => {
+  //           alert("Il y a eu une erreur : " + err);
+  }
 });
