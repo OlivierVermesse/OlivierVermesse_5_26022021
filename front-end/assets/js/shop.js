@@ -37,17 +37,19 @@ function displayCart() {
     productRow.appendChild(productPrice);
     productPrice.classList.add("shopCart__recap__title", "data-price");
 
+    let priceTotal = parseFloat(localStorage2[produit].price * localStorage2[produit].quantity);
+    
     // Affichage du prix avec le formatage € pour les lignes unitaires
     productPrice.innerHTML = new Intl.NumberFormat("fr-FR", {
       style: "currency",
       currency: "EUR",
-    }).format(localStorage2[produit].price * localStorage2[produit].quantity);
+    }).format(priceTotal);
 
     //création d'une 2ème variable productPrice pour résolution du pb quand addition de montant avec séparateur de milliers
     let productPrice2 = document.createElement("div");
     productRow.appendChild(productPrice2);
     productPrice2.classList.add("price2"); //cette CLASS sert pour le TOTAL GENERAL et paramétré en DISPLAY : NONE
-    productPrice2.innerHTML = localStorage2[produit].price * localStorage2[produit].quantity;
+    productPrice2.innerHTML = priceTotal;
   }
 }
 //affichage du montant TOTAL
