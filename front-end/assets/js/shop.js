@@ -14,8 +14,6 @@ function displayCart() {
     cartCard.style.flexDirection = "column";
     cartCard.style.justifyContent = "space-around";
     emptyCart.style.display = "none";
-  }  else {
-    cartCard.style.display = "none"
   }
 
   // Pour chaque objet dans le tableau copié du localStorage, on crée les divs de l'affichage du panier et on les remplit avec les données du tableau.
@@ -75,7 +73,7 @@ function countTotalInCart() {
   const reducer = arrayPrice.reduce((acc, value) => acc + value, 0);
   arrayPrice = reducer
 
-  // Affichage du prix avec formatage € dans le HTML
+  // Affichage du TOTAL avec formatage € dans le HTML
   totalPrice.innerText = `Total : ${(arrayPrice = new Intl.NumberFormat(
     "fr-FR",
     {
