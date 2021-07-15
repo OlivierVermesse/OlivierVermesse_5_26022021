@@ -65,22 +65,7 @@ function displayCart() {
     console.log(productPriceForTotal)
   }
 }
-/****************************************************************************************** */
-// let totalPrice = document.querySelector(".total");
-// let allPrice = document.querySelectorAll(".priceForTotal");
-// let totalPriceInit = 0;
 
-// function countTotalInCart() {
-//   if (localStorage.getItem("products")) {
-//     for (let priceToSum in allPrice) {
-//       totalPriceInit =+ allPrice[priceToSum];
-//       console.log(totalPriceInit)
-//       console.log(priceToSum)
-//     }
-//     console.log(totalPriceInit)
-//   }
-// }
-/************************************************************************************************ */
 //affichage du montant TOTAL
 function countTotalInCart() {
   let arrayPrice = []; //création d'une colonne tableau avec les prix unitaire 
@@ -120,8 +105,6 @@ function countTotalInCart() {
   console.log(arrayPrice)
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// /*************************************************************************************** */
  // Vider le panier
 function toEmptyShop() {
   const ToEmptyShop = document.querySelector(".to-empty-cart");

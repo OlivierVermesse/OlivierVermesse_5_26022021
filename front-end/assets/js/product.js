@@ -85,7 +85,6 @@ function getArticles() {
       }
         arrayProductsInCart.push(productAdded); //on ajoute le produit ajouté via le bouton à la liste du tableau
         localStorage.setItem("products", JSON.stringify(arrayProductsInCart)); //on donne la clé PRODUCTS à cette lig
-      
 
       // Message d'ajout au panier
       confirmation.style.visibility = "visible"; //modification de la donnée du CSS afin de faire apparaitre le message
