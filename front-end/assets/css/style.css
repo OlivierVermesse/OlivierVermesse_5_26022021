@@ -260,6 +260,7 @@ a:hover {
   height: 50%;
   width: 50%;
   align-self: center;
+  margin-top: 10px;
 }
 .productPage .productBloc__img img {
   object-fit: cover;

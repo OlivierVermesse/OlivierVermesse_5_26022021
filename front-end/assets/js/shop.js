@@ -1,6 +1,6 @@
 let cart = document.querySelector(".shopCart__recap"); //stockage de la CLASS dans une variable
 let localStorageProd = JSON.parse(localStorage.getItem("products")); //stockage des données du LS dans une variable
-console.log(localStorageProd)
+console.log(localStorageProd);
 
 
 main();
@@ -115,9 +115,12 @@ function countTotalInCart() {
       style: "currency",
       currency: "EUR",
     }
-  ).format(arrayPrice))}`;
+  ).format(arrayPrice)
+  )}`;
   console.log(arrayPrice)
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // /*************************************************************************************** */
  // Vider le panier
 function toEmptyShop() {
@@ -156,79 +159,32 @@ btnEnvoyerForm.addEventListener("click", (e)=> {
     const mail = formValues.mail;
     const phone = formValues.phone;
   
-    const Ermail = /^[a-z0-9._-]+@[a-z0-9.-]{2,}[.][a-z]{2,3}$/
-    const Erphone = /[0-9]{8}/;// 8 chiffres
+    const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const regexPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
     const erreurs = [];
-  
-    if (!nom) erreurs.push("Le nom n'est pas renseigné.");
-    if (!prenom) erreurs.push("Le prénom n'est pas renseigné.");
-    if (!adress) erreurs.push("L'adresse n'est pas renseignée.");
-    if (!postal) erreurs.push("Le code postal n'est pas renseigné.");
-    if (!city) erreurs.push("La ville n'est pas renseignée.");
-    if (!mail) erreurs.push("L'email n'est pas renseigné.");
-    if (!phone) erreurs.push("Le numéro de téléphone n'est pas renseigné.");
-    if (Ermail.test(mail)) erreurs.push("Le format de l'email n'est pas valide.");
-    if (Erphone.test(phone)) erreurs.push("Le numéro de téléphone n'est pas valide (8 chiffres).");
+
+    if (!nom) erreurs.push("- Le nom n'est pas renseigné.");
+    if (!prenom) erreurs.push("- Le prénom n'est pas renseigné.");
+    if (!adress) erreurs.push("- L'adresse n'est pas renseignée.");
+    if (!postal) erreurs.push("- Le code postal n'est pas renseigné.");
+    if (!city) erreurs.push("- La ville n'est pas renseignée.");
+    if (!phone) erreurs.push("- Le numéro de téléphone n'est pas renseigné ou");
+    if (!phone.match(regexPhone)) erreurs.push("le numéro de téléphone n'est pas valide.");
+    if (!mail) erreurs.push("- L'email n'est pas renseigné ou");
+    if (!mail.match(regexEmail)) erreurs.push("le format de l'email n'est pas correct.")
+       
 
     if (erreurs.length > 0) {
-       alert("Le formulaire n'a pas pu être validé car :\n\n" + erreurs.join("\n"));
+       alert("Le formulaire n'a pas pu être validé car :\n" + erreurs.join("\n"));
     }
     return (erreurs.length == 0);
  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const textAlert = (value) => {
-//   return value + " : Saisir uniquement des lettres"
-// }
-
-// const regExAlphaNum = (value) => { //voir la synthaxe via le schema 
-//   return(/^[A-Za-z]$/.test(value))
-// }
-
-
-
-// function lastnameCheck() {
-//   /////CONTROLE DES SAISIES
-//   const leLastname = formValues.lastname;
-//   if(regExAlphaNum(leLastname)) { // va renvoyer VRAI ou FAUX
-// return true;
-//   } else {
-// alert(textAlert("Nom"));
-// return false;
-//   };
-// }
-
-// function nameCheck() {
-//   /////CONTROLE DES SAISIES
-//   const leName = formValues.name;
-//   if(regExAlphaNum(leName)) { // va renvoyer VRAI ou FAUX
-// return true;
-//   } else {
-// alert(textAlert("Prénom"));
-// return false;
-//   };
-// }
-
-
 
 // //si formulaire 100% OK alors on passe la fonction d'envoi
   if(verification()) {
     sentIfOk();
   } else {
-    alert("Veuillez vérifier la saisie de votre formulaire");
+    // alert("Veuillez vérifier la saisie de votre formulaire");
   }
 
   //création de la fonction pour gérer la validation du formulaire
@@ -260,10 +216,13 @@ btnEnvoyerForm.addEventListener("click", (e)=> {
     };
     console.log("options");
     console.log(options);
+
         //Préparation du prix formaté pour l'afficher sur la prochaine page
     let confirmationPrice = document.querySelector(".total").innerText; //récupération du Total de la CLASS dans la variable
+
     confirmationPrice = confirmationPrice.split(" :"); //séparation en 2 colonnes pour avoir uniquement le total
     console.log("prix pour confirmations : " + confirmationPrice)
+
         //Envoie de la requête avec l'en-tête. On changera de page avec un localStorage qui ne contiendra plus que l'order id et le prix.
     fetch("http://localhost:3000/api/teddies/order", options)
       .then(res => res.json())
@@ -274,9 +233,7 @@ btnEnvoyerForm.addEventListener("click", (e)=> {
         console.log("prix en retour de l'API : " + confirmationPrice[1]);
 
         //ouverture de la page confirmation avec récupération des 2 dernières données stockées dans le LS
-        // document.location.href = "../Template/confirmation.html";
+        document.location.href = "../Template/confirmation.html";
       })
-  //         .catch((err) => {
-  //           alert("Il y a eu une erreur : " + err);
   }
 });
