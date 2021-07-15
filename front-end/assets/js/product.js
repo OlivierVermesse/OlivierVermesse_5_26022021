@@ -2,19 +2,6 @@
 let params = new URL(document.location).searchParams;
 let id = params.get("id"); //récupération uniquement de l'ID
 
-function checkIf404() {
-  window.addEventListener("error", (e) => {
-      let container = document.querySelector(".productPage");
-      container.innerHTML = `<p style="color: black"> Cette page n'existe pas. <a style="color: black" class="back-to-home" href="../index.html" >Retourner dans la boutique ?</a></p>`;
-      container.style.padding = "500px 0";
-      container.style.fontSize = "26px";
-      let backToHomeLink = document.querySelector(".back-to-home");
-      backToHomeLink.style.textDecoration = "underline";
-    },
-    false
-  );
-}
-
 //récupération des class de l'HTML pour les mettre dans une variable
 const productBlocImg = document.querySelector(".img");
 const productBlocName = document.querySelector(".productBloc__infos__title");
@@ -61,30 +48,30 @@ function getArticles() {
     });
 }
     //création de la fonction d'ajout au panier
-    function addToCart() {
-    //récup de la CLASS et intégration dans variable
-    const addToCartBtn = document.querySelector(".add-to-cart"); 
-    const confirmation = document.querySelector(".added-to-cart-confirmation");
-    const confirmationText = document.querySelector(".confirmation-text");
-    
-    addToCartBtn.addEventListener("click", () => {
-        if (bearQt.value > 0 && bearQt.value < 100) { //réalisation de la fonction si sup à 0 ET inf à 100
-        let productAdded = { //création de la variable qui récupérera les données ajoutées
-            name: productBlocName.innerHTML, //récup du nom
-            price: parseFloat(productBlocPrice.innerHTML),//récup du prix
-            quantity: parseFloat(document.querySelector("#bearQt").value), //récup de la quantité
-            _id: id, //récup de l'ID
-        };
+function addToCart() {
+  //récup de la CLASS et intégration dans variable
+  const addToCartBtn = document.querySelector(".add-to-cart"); 
+  const confirmation = document.querySelector(".added-to-cart-confirmation");
+  const confirmationText = document.querySelector(".confirmation-text");
+
+  addToCartBtn.addEventListener("click", () => {
+    if (bearQt.value > 0 && bearQt.value < 100) { //réalisation de la fonction si sup à 0 ET inf à 100
+      let productAdded = { //création de la variable qui récupérera les données ajoutées
+          name: productBlocName.innerHTML, //récup du nom
+          price: parseFloat(productBlocPrice.innerHTML),//récup du prix
+          quantity: parseFloat(document.querySelector("#bearQt").value), //récup de la quantité
+          _id: id, //récup de l'ID
+      };
 
       // ACTION DU BOUTON PANIER
-        let arrayProductsInCart = []; //création du tableau qui stockera les données ajoutées
+      let arrayProductsInCart = []; //création du tableau qui stockera les données ajoutées
       
       //on vérifie si dans le LS on a déjà des données avec la clé PRODUCTS et on récup la liste et ajoute les données dans la tableau
       if (localStorage.getItem("products") !== null) {
         arrayProductsInCart = JSON.parse(localStorage.getItem("products"));
       }
-        arrayProductsInCart.push(productAdded); //on ajoute le produit ajouté via le bouton à la liste du tableau
-        localStorage.setItem("products", JSON.stringify(arrayProductsInCart)); //on donne la clé PRODUCTS à cette lig
+      arrayProductsInCart.push(productAdded); //on ajoute le produit ajouté via le bouton à la liste du tableau
+      localStorage.setItem("products", JSON.stringify(arrayProductsInCart)); //on donne la clé PRODUCTS à cette ligne
 
       // Message d'ajout au panier
       confirmation.style.visibility = "visible"; //modification de la donnée du CSS afin de faire apparaitre le message
@@ -104,8 +91,6 @@ function getArticles() {
 main();
 
 function main() {
-  checkIf404();
   getArticles();
   addToCart();
-
 }

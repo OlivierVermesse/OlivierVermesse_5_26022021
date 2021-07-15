@@ -3,6 +3,7 @@ function getArticles() {
   fetch("http://localhost:3000/api/teddies")
     .then(function (res) {
       return res.json(); //récupération en format JSON
+      console.log(res.json())
     })
 //gestion de la non connection au serveur
     .catch((error) => {
@@ -15,6 +16,7 @@ function getArticles() {
 // Affichage des données de chaque produit dans le HTML
     .then(function (listAPI) {
       const articles = listAPI;
+      console.log(articles)
       for (let article in articles) {
 
         //création d'une variable DIV dans la classe PRODUCTS où on va mettre une class PRODUCT

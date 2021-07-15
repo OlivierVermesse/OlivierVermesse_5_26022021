@@ -85,7 +85,7 @@ function countTotalInCart() {
   console.log(arrayPrice)
 
   // Conversion en nombre des prix en créant un nouveau tableau pour convertir la même donnée dans la même variable
-  arrayPrice = arrayPrice.map((x) => parseFloat(x));
+  arrayPrice = arrayPrice.map(x => parseFloat(x));
   console.log(arrayPrice)
 
   // Addition des prix du tableau ==> permet de ne pas avoir de message d'erreur si LS vide grace a ala valeur initiale à 0
@@ -152,7 +152,7 @@ btnEnvoyerForm.addEventListener("click", (e)=> {
     if (!postal) erreurs.push("- Le code postal n'est pas renseigné.");
     if (!city) erreurs.push("- La ville n'est pas renseignée.");
     if (!phone) erreurs.push("- Le numéro de téléphone n'est pas renseigné ou");
-    if (!phone.match(regexPhone)) erreurs.push("le numéro de téléphone n'est pas valide.");
+    if (!phone.match(regexPhone)) erreurs.push("le numéro de téléphone n'est pas valide (entre 10 et 12 chiffres).");
     if (!mail) erreurs.push("- L'email n'est pas renseigné ou");
     if (!mail.match(regexEmail)) erreurs.push("le format de l'email n'est pas correct.")
        
@@ -210,8 +210,8 @@ btnEnvoyerForm.addEventListener("click", (e)=> {
     fetch("http://localhost:3000/api/teddies/order", options)
       .then(res => res.json())
       .then((data) => {
-        localStorage.setItem("orderId", data.orderId); //on récupére l'ID de confirmation de commande de l'API
-        localStorage.setItem("total", confirmationPrice[1]); //on récupére le montant total de la commande pour l'afficher dans la confirmation de commande
+        localStorage.setItem("orderId", data.orderId); //on envoi l'ID de confirmation de commande de l'API
+        localStorage.setItem("total", confirmationPrice[1]); //on envoi le montant total de la commande pour l'afficher dans la confirmation de commande
         console.log("orderId de l'API : " + data.orderId);
         console.log("prix en retour de l'API : " + confirmationPrice[1]);
 
