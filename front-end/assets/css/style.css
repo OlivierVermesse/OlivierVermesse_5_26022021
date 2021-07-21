@@ -441,6 +441,7 @@ section {
 }
 .if-empty-cart h2 {
   margin-top: 75px;
+  text-align: center;
 }
 .if-empty-cart h2 a {
   color: black;

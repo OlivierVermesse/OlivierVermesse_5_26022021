@@ -1,6 +1,6 @@
 //récupération des éléments de l'URL sélectionné
 let params = new URL(document.location).searchParams;
-let id = params.get("id"); //récupération uniquement de l'ID
+let id = params.get("id");
 
 //récupération des class de l'HTML pour les mettre dans une variable
 const productBlocImg = document.querySelector(".img");
@@ -15,7 +15,7 @@ function getArticles() {
   // On récupère le produit sélection via l'ID
   fetch(`http://localhost:3000/api/teddies/${id}`)
     .then(function (response) {
-      return response.json(); //on le met au format JSON
+      return response.json();
     })
     //gestion de l'erreur de connection à la page
     .catch((error) => {
@@ -37,11 +37,11 @@ function getArticles() {
       }).format(article.price);
 
       // Gestion de la liste des couleurs
-      let colorChoice = document.getElementById("colorChoice"); //récupération de l'ID du DOM et intégration dans variable
-      for (let i = 0; i < article.colors.length; i++) { //récupération de l'ensemlbe des couleurs de l'API pour cet ID
-        let option = document.createElement("option"); //création d'un élément couleur et intégration dans un variable
-        option.innerText = article.colors[i]; //intégration de chaque couleur dans l'élèment
-        colorChoice.appendChild(option); //rattachement de la liste des couleurs à la variable colorChoice pour affichage dans DOM
+      let colorChoice = document.getElementById("colorChoice");
+      for (let i = 0; i < article.colors.length; i++) {
+        let option = document.createElement("option");
+        option.innerText = article.colors[i];
+        colorChoice.appendChild(option);
       }
     });
 }
@@ -51,37 +51,36 @@ function addToCart() {
   const addToCartBtn = document.querySelector(".add-to-cart"); 
   const confirmation = document.querySelector(".added-to-cart-confirmation");
   const confirmationText = document.querySelector(".confirmation-text");
-  // const inputError = document.querySelector(".input_error");
 
   addToCartBtn.addEventListener("click", () => {
-    if (bearQt.value > 0 && bearQt.value < 100) { //réalisation de la fonction si sup à 0 ET inf à 100
-      let productAdded = { //création de la variable qui récupérera les données ajoutées
-          name: productBlocName.innerHTML, //récup du nom
-          price: parseFloat(productBlocPrice.innerHTML),//récup du prix
-          quantity: parseFloat(document.querySelector("#bearQt").value), //récup de la quantité
-          _id: id, //récup de l'ID
+    if (bearQt.value > 0 && bearQt.value < 100) {
+      let productAdded = {
+          name: productBlocName.innerHTML,
+          price: parseFloat(productBlocPrice.innerHTML),
+          quantity: parseFloat(document.querySelector("#bearQt").value),
+          _id: id, 
       };
 
       // ACTION DU BOUTON PANIER
-      let arrayProductsInCart = []; //création du tableau qui stockera les données ajoutées
+      let arrayProductsInCart = []; 
       
       //on vérifie si dans le LS on a déjà des données avec la clé PRODUCTS et on récup la liste et ajoute les données dans la tableau
       if (localStorage.getItem("products") !== null) {
         arrayProductsInCart = JSON.parse(localStorage.getItem("products"));
       }
-      arrayProductsInCart.push(productAdded); //on ajoute le produit ajouté via le bouton à la liste du tableau
-      localStorage.setItem("products", JSON.stringify(arrayProductsInCart)); //on donne la clé PRODUCTS à cette ligne
+      arrayProductsInCart.push(productAdded); u
+      localStorage.setItem("products", JSON.stringify(arrayProductsInCart));
 
       // Message d'ajout au panier
-      confirmation.style.visibility = "visible"; //modification de la donnée du CSS afin de faire apparaitre le message
+      confirmation.style.visibility = "visible"; 
       confirmationText.innerHTML = `Vous avez ajouté ${bearQt.value} ours ${productBlocName.innerHTML} à votre panier !`;
-      setTimeout("location.reload(true);", 4000); //ligne de retour en invisible avec le délai
+      setTimeout("location.reload(true);", 4000);
     } else {
       //mise en forme texte si quantité n'est pas valable
       confirmation.style.visibility = "visible";
       confirmationText.classList.add("input_error");
       confirmationText.innerText = "Erreur dans la quantité. Merci d'indiquer votre quantité entre 1 et 99.";
-      setTimeout("location.reload(true);", 4000); //ligne de retour en invisible avec le délai
+      setTimeout("location.reload(true);", 4000);
     }
   });
 }
