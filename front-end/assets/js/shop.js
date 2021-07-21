@@ -20,8 +20,6 @@ function displayCart() {
   // si on a des données dans localStorage on met la div en colonne.
   if (localStorage.getItem("products")) {
     cartCard.style.display = "flex";
-    cartCard.style.flexDirection = "column";
-    cartCard.style.justifyContent = "space-around";
     emptyCart.style.display = "none";
   }
 
@@ -134,28 +132,19 @@ btnEnvoyerForm.addEventListener("click", (e)=> {
 
   //regles de gestion de validation des formulaires
   function verification() {
-    const nom = formValues.lastname;
-    const prenom = formValues.name;
-    const adress = formValues.adress;
-    const postal = formValues.postal;
-    const city = formValues.city;
-    const mail = formValues.mail;
-    const phone = formValues.phone;
-  
     const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const regexPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
     const erreurs = [];
 
-    if (!nom) erreurs.push("- Le nom n'est pas renseigné.");
-    if (!prenom) erreurs.push("- Le prénom n'est pas renseigné.");
-    if (!adress) erreurs.push("- L'adresse n'est pas renseignée.");
-    if (!postal) erreurs.push("- Le code postal n'est pas renseigné.");
-    if (!city) erreurs.push("- La ville n'est pas renseignée.");
-    if (!phone) erreurs.push("- Le numéro de téléphone n'est pas renseigné ou");
-    if (!phone.match(regexPhone)) erreurs.push("le numéro de téléphone n'est pas valide (entre 10 et 12 chiffres).");
-    if (!mail) erreurs.push("- L'email n'est pas renseigné ou");
-    if (!mail.match(regexEmail)) erreurs.push("le format de l'email n'est pas correct.")
-       
+    if (!formValues.lastname) erreurs.push("- Le nom n'est pas renseigné.");
+    if (!formValues.name) erreurs.push("- Le prénom n'est pas renseigné.");
+    if (!formValues.adress) erreurs.push("- L'adresse n'est pas renseignée.");
+    if (!formValues.postal) erreurs.push("- Le code postal n'est pas renseigné.");
+    if (!formValues.city) erreurs.push("- La ville n'est pas renseignée.");
+    if (!formValues.phone) erreurs.push("- Le numéro de téléphone n'est pas renseigné ou");
+    if (!formValues.phone.match(regexPhone)) erreurs.push("le numéro de téléphone n'est pas valide (entre 10 et 12 chiffres).");
+    if (!formValues.mail) erreurs.push("- L'email n'est pas renseigné ou");
+    if (!formValues.mail.match(regexEmail)) erreurs.push("le format de l'email n'est pas correct.")
 
     if (erreurs.length > 0) {
        alert("Le formulaire n'a pas pu être validé car :\n" + erreurs.join("\n"));
@@ -182,7 +171,7 @@ btnEnvoyerForm.addEventListener("click", (e)=> {
         firstName: formValues.name,
         lastName: formValues.lastname,
         address: formValues.adress,
-        city: formValues.city,
+        city: formValues.postal + " " + formValues.city,
         email: formValues.mail,
       },
       products: shopId,
@@ -216,7 +205,7 @@ btnEnvoyerForm.addEventListener("click", (e)=> {
         console.log("prix en retour de l'API : " + confirmationPrice[1]);
 
         //ouverture de la page confirmation avec récupération des 2 dernières données stockées dans le LS
-        document.location.href = "../Template/confirmation.html";
+        // document.location.href = "../Template/confirmation.html";
       })
   }
 });

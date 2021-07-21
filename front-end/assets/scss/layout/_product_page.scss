@@ -3,6 +3,8 @@
       justify-content: center;
       align-self: center;
       width: 100%;
+      text-align: center;
+      padding: 50px 0;
     .productBloc {
       margin: 50px 15px;
       display: flex;
@@ -52,11 +54,9 @@
         }
         .added-to-cart-confirmation {
           visibility: hidden;
-          & p {
-            padding: 5px;
-            background-color: rgb(100, 194, 100);
-            border: darken(rgb(100, 194, 100), 20%) 1px solid;
-          }
+          margin: 5px;
+          background-color: rgb(100, 194, 100);
+          border: darken(rgb(100, 194, 100), 20%) 1px solid;
         }
         &__button {
           padding: 20px;

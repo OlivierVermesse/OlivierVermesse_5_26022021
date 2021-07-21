@@ -10,8 +10,6 @@ function getArticles() {
       let products_bloc = document.querySelector(".products-home-page");
       products_bloc.innerHTML =
         "un problème de lien avec le serveur a été détecté.<br> Vérifier la connection du serveur local<br>Si le problème persiste, merci de nous contacter par l'intermédiaire du formulaire CONTACT";
-      products_bloc.style.textAlign = "center";
-      products_bloc.style.padding = "50px 0";
     })
 // Affichage des données de chaque produit dans le HTML
     .then(function (listAPI) {

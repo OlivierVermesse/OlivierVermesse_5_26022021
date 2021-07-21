@@ -21,8 +21,6 @@ function getArticles() {
     .catch((error) => {
       let productPage = document.querySelector(".productPage");
       productPage.innerHTML = "un problème de lien avec le serveur a été détecté.<br> Vérifier la connection du serveur local<br>Si le problème persiste, merci de nous contacter par l'intermédiaire du formulaire CONTACT";
-      productPage.style.textAlign = "center";
-      productPage.style.padding = "50px 0";
     })
     //si on a une réponse > récupération des infos est placement dans les variables des CLASS
     .then(function (resultatAPI) {
@@ -53,6 +51,7 @@ function addToCart() {
   const addToCartBtn = document.querySelector(".add-to-cart"); 
   const confirmation = document.querySelector(".added-to-cart-confirmation");
   const confirmationText = document.querySelector(".confirmation-text");
+  // const inputError = document.querySelector(".input_error");
 
   addToCartBtn.addEventListener("click", () => {
     if (bearQt.value > 0 && bearQt.value < 100) { //réalisation de la fonction si sup à 0 ET inf à 100
@@ -80,10 +79,9 @@ function addToCart() {
     } else {
       //mise en forme texte si quantité n'est pas valable
       confirmation.style.visibility = "visible";
-      confirmationText.style.background = "red";
-      confirmationText.style.border = "red";
-      confirmationText.style.color = "white";
+      confirmationText.classList.add("input_error");
       confirmationText.innerText = "Erreur dans la quantité. Merci d'indiquer votre quantité entre 1 et 99.";
+      setTimeout("location.reload(true);", 4000); //ligne de retour en invisible avec le délai
     }
   });
 }
