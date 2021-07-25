@@ -68,7 +68,7 @@ function addToCart() {
       if (localStorage.getItem("products") !== null) {
         arrayProductsInCart = JSON.parse(localStorage.getItem("products"));
       }
-      arrayProductsInCart.push(productAdded); u
+      arrayProductsInCart.push(productAdded);
       localStorage.setItem("products", JSON.stringify(arrayProductsInCart));
 
       // Message d'ajout au panier

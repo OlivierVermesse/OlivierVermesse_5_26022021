@@ -50,19 +50,14 @@ function displayCart() {
       currency: "EUR",
     }).format(priceTotal);
 
-    console.log(productPrice)
-
     //création d'une 2ème variable productPrice pour résolution du pb quand addition de montant avec séparateur de milliers
     let productPriceForTotal = document.createElement("div");
     productRow.appendChild(productPriceForTotal);
     productPriceForTotal.classList.add("priceForTotal"); //cette CLASS sert pour le TOTAL GENERAL et paramétré en DISPLAY : NONE
     productPriceForTotal.innerHTML = priceTotal;
-
-    console.log(productPriceForTotal)
+    }
   }
-}
 
-//affichage du montant TOTAL
 function countTotalInCart() {
   let arrayPrice = []; 
   let totalPrice = document.querySelector(".total");
@@ -72,22 +67,18 @@ function countTotalInCart() {
   for (let price in allPrice) {
     arrayPrice.push(allPrice[price].innerHTML);
   }
-  console.log(arrayPrice)
 
   // Suppression des lignes UNDEFINED du tableau
   arrayPrice = arrayPrice.filter((e) => {
     return e != undefined;
   });
-  console.log(arrayPrice)
 
   // Conversion en nombre des prix en créant un nouveau tableau pour convertir la même donnée dans la même variable
   arrayPrice = arrayPrice.map(x => parseFloat(x));
-  console.log(arrayPrice)
 
   // Addition des prix du tableau ==> permet de ne pas avoir de message d'erreur si LS vide grace a ala valeur initiale à 0
   const reducer = arrayPrice.reduce((acc, value) => acc + value, 0);
   arrayPrice = reducer
-  console.log(arrayPrice)
 
   //Affichage du TOTAL avec formatage € dans le HTML
   totalPrice.innerText = `Total : ${(arrayPrice = new Intl.NumberFormat(
@@ -98,7 +89,6 @@ function countTotalInCart() {
     }
   ).format(arrayPrice)
   )}`;
-  console.log(arrayPrice)
 }
 
  // Vider le panier
@@ -202,7 +192,7 @@ btnEnvoyerForm.addEventListener("click", (e)=> {
         console.log("prix en retour de l'API : " + confirmationPrice[1]);
 
         //ouverture de la page confirmation avec récupération des 2 dernières données stockées dans le LS
-        document.location.href = "../Template/confirmation.html";
+        // document.location.href = "../Template/confirmation.html";
       })
   }
 });
