@@ -192,7 +192,7 @@ btnEnvoyerForm.addEventListener("click", (e)=> {
         console.log("prix en retour de l'API : " + confirmationPrice[1]);
 
         //ouverture de la page confirmation avec récupération des 2 dernières données stockées dans le LS
-        // document.location.href = "../Template/confirmation.html";
+        document.location.href = "../Template/confirmation.html";
       })
   }
 });
