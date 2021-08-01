@@ -122,12 +122,18 @@ btnEnvoyerForm.addEventListener("click", (e)=> {
   function verification() {
     const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const regexPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+    const regexLastname = /^[a-zA-Z -]+$/;
+    const regexName = /^[a-zA-Z -]+$/;
+    const regexPostal = /^\d{5}$/;
     const erreurs = [];
 
-    if (!formValues.lastname) erreurs.push("- Le nom n'est pas renseigné.");
-    if (!formValues.name) erreurs.push("- Le prénom n'est pas renseigné.");
+    if (!formValues.lastname) erreurs.push("- Le nom n'est pas renseigné ou");
+    if (!formValues.lastname.match(regexLastname)) erreurs.push("le nom ne doit pas contenir de chiffre/caractére spécial.");
+    if (!formValues.name) erreurs.push("- Le prénom n'est pas renseigné ou");
+    if (!formValues.name.match(regexName)) erreurs.push("le prénom ne doit pas contenir de chiffre/caractére spécial.");
     if (!formValues.adress) erreurs.push("- L'adresse n'est pas renseignée.");
-    if (!formValues.postal) erreurs.push("- Le code postal n'est pas renseigné.");
+    if (!formValues.postal) erreurs.push("- Le code postal n'est pas renseigné ou");
+    if (!formValues.postal.match(regexPostal)) erreurs.push("le code postal doit contenir 5 chiffres.");
     if (!formValues.city) erreurs.push("- La ville n'est pas renseignée.");
     if (!formValues.phone) erreurs.push("- Le numéro de téléphone n'est pas renseigné ou");
     if (!formValues.phone.match(regexPhone)) erreurs.push("le numéro de téléphone n'est pas valide (entre 10 et 12 chiffres).");
